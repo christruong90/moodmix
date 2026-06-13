@@ -1,0 +1,97 @@
+# MoodMix
+
+A full-stack portfolio project for generating AI-powered Spotify playlists. Built to demonstrate Spotify OAuth, Claude AI integration, backend API development, and frontend UI.
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Backend | FastAPI (Python) |
+| Database | MySQL + SQLAlchemy |
+| Auth | Spotify OAuth2 |
+| Music Data | Spotify Web API |
+| AI | Claude API (Anthropic) |
+| Frontend | React + Vite |
+| Deployment | Docker Compose |
+
+## Features
+
+- Login with Spotify
+- **MoodMix**: Type a mood or vibe, Claude picks tracks and creates a real Spotify playlist
+- **TasteClone**: Analyse your top artists and genres, Claude recommends new artists you'd love
+- **PartyDJ**: Join a shared room with friends, Claude generates a group playlist balancing everyone's taste
+
+## Project Structure
+
+```
+moodmix/
+├── backend/
+│   ├── app/
+│   │   ├── core/        # Config, security, dependencies
+│   │   ├── models/      # SQLAlchemy database models
+│   │   ├── routers/     # API route handlers
+│   │   ├── schemas/     # Pydantic request/response schemas
+│   │   └── services/    # Business logic, Spotify & Claude clients
+│   └── requirements.txt
+├── frontend/            # React + Vite app
+└── docker-compose.yml
+```
+
+## Getting Started
+
+### Prerequisites
+- Spotify Developer account — create an app at https://developer.spotify.com
+- Anthropic API key — create one at https://console.anthropic.com
+- MySQL running locally
+
+### Backend
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+API docs available at `http://localhost:8000/docs`
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## Environment Variables
+
+Create a `.env` file in `backend/`:
+
+```
+DATABASE_URL=mysql+pymysql://user:password@localhost:3306/moodmix
+SECRET_KEY=your-secret-key
+SPOTIFY_CLIENT_ID=your-spotify-client-id
+SPOTIFY_CLIENT_SECRET=your-spotify-client-secret
+SPOTIFY_REDIRECT_URI=http://localhost:8000/auth/spotify/callback
+ANTHROPIC_API_KEY=your-anthropic-api-key
+```
+
+## Build Progress
+
+| Step | Description | Status |
+|------|-------------|--------|
+| 1 | Init repo & project structure | ✅ Done |
+| 2 | FastAPI app skeleton | ⬜ Not started |
+| 3 | MySQL schema & SQLAlchemy models | ⬜ Not started |
+| 4 | Spotify OAuth login | ⬜ Not started |
+| 5 | Spotify API integration (top tracks, top artists, create playlist) | ⬜ Not started |
+| 6 | AI: MoodMix — mood input → Claude → Spotify playlist | ⬜ Not started |
+| 7 | AI: TasteClone — top genres → Claude → artist recommendations | ⬜ Not started |
+| 8 | AI: PartyDJ — shared room → group playlist | ⬜ Not started |
+| 9 | Frontend: React + Vite scaffold | ⬜ Not started |
+| 10 | Frontend: Spotify login & home page | ⬜ Not started |
+| 11 | Frontend: MoodMix UI | ⬜ Not started |
+| 12 | Frontend: TasteClone UI | ⬜ Not started |
+| 13 | Frontend: PartyDJ UI | ⬜ Not started |
+| 14 | Docker Compose + deployment configs | ⬜ Not started |
