@@ -8,5 +8,9 @@ venv/
 node_modules/
 dist/
 
+# SSL certs (local dev)
+*.pem
+Caddyfile
+
 # Docker
 *.log
