@@ -63,12 +63,26 @@ moodmix/
 6. ⬜ Backend: AI MoodMix route (mood → Claude → Spotify playlist)
 7. ⬜ Backend: AI TasteClone route (top genres → Claude → artist recommendations)
 8. ⬜ Backend: AI PartyDJ route (room system + group playlist generation)
-9. ⬜ Frontend: React + Vite scaffold
-10. ⬜ Frontend: Spotify login & home page
-11. ⬜ Frontend: MoodMix UI
-12. ⬜ Frontend: TasteClone UI
-13. ⬜ Frontend: PartyDJ UI
-14. ⬜ Deployment: Docker Compose + configs
+9. ⬜ Backend: Analytics API (mood history, genre breakdown, playlist stats)
+10. ⬜ Frontend: React + Vite scaffold
+11. ⬜ Frontend: Spotify login & home page
+12. ⬜ Frontend: MoodMix UI
+13. ⬜ Frontend: TasteClone UI
+14. ⬜ Frontend: PartyDJ UI
+15. ⬜ Frontend: Analytics dashboard (charts, genre viz, mood history)
+16. ⬜ Frontend: Polish — animations, responsive design, portfolio-ready visuals
+17. ⬜ Deployment: Docker Compose + Railway hosting (backend + frontend + MySQL)
+18. ⬜ CI/CD: GitHub Actions pipeline (lint, test, auto-deploy to Railway)
+15. ⬜ Deploy to Railway (public URL)
+
+## Railway Deployment Plan (Step 15)
+- Create a Railway account at https://railway.app
+- Connect GitHub repo `christruong90/moodmix`
+- Railway auto-detects Docker Compose and creates services for backend, frontend, and MySQL
+- Set env vars in Railway dashboard (same as local `.env` but with production values)
+- Update Spotify Developer app to add the Railway callback URL as an allowed redirect URI
+- Update `ALLOWED_ORIGINS` to include the Railway frontend URL
+- Each project gets a free public URL (e.g. `moodmix.up.railway.app`)
 
 ## Working Style
 - Build **one step at a time** with a git commit after each step

@@ -96,9 +96,13 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | 6 | AI: MoodMix — mood input → Claude → Spotify playlist | ⬜ Not started |
 | 7 | AI: TasteClone — top genres → Claude → artist recommendations | ⬜ Not started |
 | 8 | AI: PartyDJ — shared room → group playlist | ⬜ Not started |
-| 9 | Frontend: React + Vite scaffold | ⬜ Not started |
-| 10 | Frontend: Spotify login & home page | ⬜ Not started |
-| 11 | Frontend: MoodMix UI | ⬜ Not started |
-| 12 | Frontend: TasteClone UI | ⬜ Not started |
-| 13 | Frontend: PartyDJ UI | ⬜ Not started |
-| 14 | Docker Compose + deployment configs | ⬜ Not started |
+| 9 | Analytics API — mood history, genre breakdown, playlist stats | ⬜ Not started |
+| 10 | Frontend: React + Vite scaffold | ⬜ Not started |
+| 11 | Frontend: Spotify login & home page | ⬜ Not started |
+| 12 | Frontend: MoodMix UI | ⬜ Not started |
+| 13 | Frontend: TasteClone UI | ⬜ Not started |
+| 14 | Frontend: PartyDJ UI | ⬜ Not started |
+| 15 | Frontend: Analytics dashboard (charts, genre viz, mood history) | ⬜ Not started |
+| 16 | Frontend: Polish — animations, responsive design, portfolio-ready visuals | ⬜ Not started |
+| 17 | Deployment: Docker Compose + Railway hosting | ⬜ Not started |
+| 18 | CI/CD: GitHub Actions (lint, test, auto-deploy to Railway) | ⬜ Not started |
