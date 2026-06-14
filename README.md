@@ -54,7 +54,14 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-API docs available at `http://localhost:8000/docs`
+Spotify OAuth requires HTTPS locally. Use [Caddy](https://caddyserver.com) as a reverse proxy:
+
+```bash
+brew install caddy
+caddy run   # from project root, requires a Caddyfile
+```
+
+API available at `https://localhost:8443` — docs at `https://localhost:8443/docs`
 
 ### Frontend
 
@@ -82,7 +89,7 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | Step | Description | Status |
 |------|-------------|--------|
 | 1 | Init repo & project structure | ✅ Done |
-| 2 | FastAPI app skeleton | ⬜ Not started |
+| 2 | FastAPI app skeleton | ✅ Done |
 | 3 | MySQL schema & SQLAlchemy models | ⬜ Not started |
 | 4 | Spotify OAuth login | ⬜ Not started |
 | 5 | Spotify API integration (top tracks, top artists, create playlist) | ⬜ Not started |

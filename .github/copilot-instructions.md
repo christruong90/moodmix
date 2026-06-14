@@ -56,7 +56,7 @@ moodmix/
 
 ## Build Plan (step-by-step for clean git history)
 1. ✅ Init repo & project structure
-2. ⬜ Backend: FastAPI app skeleton (`main.py`, `config`, `database`)
+2. ✅ Backend: FastAPI app skeleton (`main.py`, `config`, `database`)
 3. ⬜ Database: MySQL schema & SQLAlchemy models (User, Playlist, Room, RoomMember)
 4. ⬜ Backend: Spotify OAuth login (redirect → callback → store token)
 5. ⬜ Backend: Spotify API integration (top tracks, top artists, create playlist, search tracks)
@@ -89,6 +89,13 @@ When generating code for this project:
 - Never expose passwords, tokens, or API keys in code or responses
 - Always explain what new code does and why, before showing it
 - Show one file at a time
+
+## Local HTTPS Setup
+Spotify OAuth requires HTTPS. Caddy is used as a reverse proxy for local dev:
+- uvicorn runs on `http://localhost:8000` (plain HTTP)
+- Caddy proxies `https://localhost:8443` → `localhost:8000`
+- Spotify redirect URI: `https://localhost:8443/auth/spotify/callback`
+- Run Caddy from project root: `caddy run`
 
 ## Environment Variables (backend `.env`)
 ```
