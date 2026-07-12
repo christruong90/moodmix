@@ -58,8 +58,8 @@ moodmix/
 1. ✅ Init repo & project structure
 2. ✅ Backend: FastAPI app skeleton (`main.py`, `config`, `database`)
 3. ✅ Database: MySQL schema & SQLAlchemy models (User, Playlist, Room, RoomMember)
-4. ⬜ Backend: Spotify OAuth login (redirect → callback → store token)
-5. ⬜ Backend: Spotify API integration (top tracks, top artists, create playlist, search tracks)
+4. ✅ Backend: Spotify OAuth login (redirect → callback → store token)
+5. ✅ Backend: Spotify API integration (top tracks, top artists, create playlist, search tracks)
 6. ⬜ Backend: AI MoodMix route (mood → Claude → Spotify playlist)
 7. ⬜ Backend: AI TasteClone route (top genres → Claude → artist recommendations)
 8. ⬜ Backend: AI PartyDJ route (room system + group playlist generation)

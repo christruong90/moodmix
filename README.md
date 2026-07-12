@@ -91,8 +91,8 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | 1 | Init repo & project structure | ✅ Done |
 | 2 | FastAPI app skeleton | ✅ Done |
 | 3 | MySQL schema & SQLAlchemy models | ✅ Done |
-| 4 | Spotify OAuth login | ⬜ Not started |
-| 5 | Spotify API integration (top tracks, top artists, create playlist) | ⬜ Not started |
+| 4 | Spotify OAuth login | ✅ Done |
+| 5 | Spotify API integration (top tracks, top artists, create playlist) | ✅ Done |
 | 6 | AI: MoodMix — mood input → Claude → Spotify playlist | ⬜ Not started |
 | 7 | AI: TasteClone — top genres → Claude → artist recommendations | ⬜ Not started |
 | 8 | AI: PartyDJ — shared room → group playlist | ⬜ Not started |
