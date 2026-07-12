@@ -93,7 +93,7 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | 3 | MySQL schema & SQLAlchemy models | ✅ Done |
 | 4 | Spotify OAuth login | ✅ Done |
 | 5 | Spotify API integration (top tracks, top artists, create playlist) | ✅ Done |
-| 6 | AI: MoodMix — mood input → Claude → Spotify playlist | ⬜ Not started |
+| 6 | AI: MoodMix — mood input → Claude → Spotify playlist | ✅ Done |
 | 7 | AI: TasteClone — top genres → Claude → artist recommendations | ⬜ Not started |
 | 8 | AI: PartyDJ — shared room → group playlist | ⬜ Not started |
 | 9 | Analytics API — mood history, genre breakdown, playlist stats | ⬜ Not started |
