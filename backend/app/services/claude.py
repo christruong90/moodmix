@@ -46,3 +46,26 @@ Respond with a JSON array of 5 objects only. No explanation, no markdown, just t
     )
     return json.loads(message.content[0].text)
 
+
+def get_partydj_playlist(members_genres: list) -> list:
+    members_str = "\n".join(
+        f"- Member {i+1}: {', '.join(genres[:5])}"
+        for i, genres in enumerate(members_genres)
+    )
+
+    prompt = f"""You are a DJ planning music for a group. Here are the top genres for each person in the group:
+
+{members_str}
+
+Create a balanced playlist by generating exactly 15 Spotify search queries that would satisfy everyone.
+Mix genres fairly — don't favour any one person. Include a variety of energy levels.
+
+Respond with a JSON array of 15 strings only. No explanation, no markdown, just the JSON array."""
+
+    message = client.messages.create(
+        model=MODEL,
+        max_tokens=800,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return json.loads(message.content[0].text)
+
