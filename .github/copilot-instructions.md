@@ -105,27 +105,31 @@ When generating code for this project:
 - Show one file at a time
 
 ## Local HTTPS Setup
-Spotify OAuth requires HTTPS. Caddy is used as a reverse proxy for local dev:
+Spotify OAuth requires HTTPS. ngrok is used to tunnel local dev traffic:
 - uvicorn runs on `http://localhost:8000` (plain HTTP)
-- Caddy proxies `https://localhost:8443` → `localhost:8000`
-- Spotify redirect URI: `https://localhost:8443/auth/spotify/callback`
-- Run Caddy from project root: `caddy run`
+- ngrok tunnels `https://versus-aloha-lens.ngrok-free.dev` → `localhost:8000`
+- Spotify redirect URI: `https://versus-aloha-lens.ngrok-free.dev/auth/spotify/callback`
+- Start ngrok: `ngrok http --url=versus-aloha-lens.ngrok-free.dev 8000`
+- Caddy is no longer used for local dev
 
 ## Environment Variables (backend `.env`)
 ```
-DATABASE_URL=mysql+pymysql://user:password@localhost:3306/moodmix
+DATABASE_URL=mysql+pymysql://root:@localhost:3306/moodmix
 SECRET_KEY=your-secret-key
 SPOTIFY_CLIENT_ID=your-spotify-client-id
 SPOTIFY_CLIENT_SECRET=your-spotify-client-secret
-SPOTIFY_REDIRECT_URI=http://localhost:8000/auth/spotify/callback
+SPOTIFY_REDIRECT_URI=https://versus-aloha-lens.ngrok-free.dev/auth/spotify/callback
 ANTHROPIC_API_KEY=your-anthropic-api-key
 ```
 
 ## Prerequisites Before Starting
 - Spotify Developer account: https://developer.spotify.com
   - Create an app called "MoodMix"
-  - Add redirect URI: `http://localhost:8000/auth/spotify/callback`
+  - Add redirect URI: `https://versus-aloha-lens.ngrok-free.dev/auth/spotify/callback`
   - Note down Client ID and Client Secret
 - Anthropic API key: https://console.anthropic.com
   - Sign up and create an API key
   - Add to backend `.env` as `ANTHROPIC_API_KEY`
+- ngrok account: https://dashboard.ngrok.com
+  - Static domain: `versus-aloha-lens.ngrok-free.dev`
+  - Start with: `ngrok http --url=versus-aloha-lens.ngrok-free.dev 8000`

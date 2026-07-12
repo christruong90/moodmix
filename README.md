@@ -43,6 +43,7 @@ moodmix/
 - Spotify Developer account — create an app at https://developer.spotify.com
 - Anthropic API key — create one at https://console.anthropic.com
 - MySQL running locally
+- ngrok account — static domain for Spotify OAuth
 
 ### Backend
 
@@ -54,14 +55,13 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Spotify OAuth requires HTTPS locally. Use [Caddy](https://caddyserver.com) as a reverse proxy:
+Spotify OAuth requires HTTPS — use ngrok to tunnel local traffic:
 
 ```bash
-brew install caddy
-caddy run   # from project root, requires a Caddyfile
+ngrok http --url=versus-aloha-lens.ngrok-free.dev 8000
 ```
 
-API available at `https://localhost:8443` — docs at `https://localhost:8443/docs`
+API available at `http://localhost:8000` — docs at `http://localhost:8000/docs`
 
 ### Frontend
 
@@ -76,11 +76,11 @@ npm run dev
 Create a `.env` file in `backend/`:
 
 ```
-DATABASE_URL=mysql+pymysql://user:password@localhost:3306/moodmix
+DATABASE_URL=mysql+pymysql://root:@localhost:3306/moodmix
 SECRET_KEY=your-secret-key
 SPOTIFY_CLIENT_ID=your-spotify-client-id
 SPOTIFY_CLIENT_SECRET=your-spotify-client-secret
-SPOTIFY_REDIRECT_URI=http://localhost:8000/auth/spotify/callback
+SPOTIFY_REDIRECT_URI=https://versus-aloha-lens.ngrok-free.dev/auth/spotify/callback
 ANTHROPIC_API_KEY=your-anthropic-api-key
 ```
 
