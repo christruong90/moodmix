@@ -67,3 +67,67 @@ async def get_current_user(access_token: str) -> dict:
 
 def token_expires_at(expires_in: int) -> datetime:
     return datetime.utcnow() + timedelta(seconds=expires_in)
+
+
+async def get_top_tracks(access_token: str, limit: int = 20) -> list:
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            "https://api.spotify.com/v1/me/top/tracks",
+            headers={"Authorization": f"Bearer {access_token}"},
+            params={"limit": limit, "time_range": "medium_term"},
+        )
+        response.raise_for_status()
+        return response.json().get("items", [])
+
+
+async def get_top_artists(access_token: str, limit: int = 20) -> list:
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            "https://api.spotify.com/v1/me/top/artists",
+            headers={"Authorization": f"Bearer {access_token}"},
+            params={"limit": limit, "time_range": "medium_term"},
+        )
+        response.raise_for_status()
+        return response.json().get("items", [])
+
+
+async def search_tracks(access_token: str, query: str, limit: int = 5) -> list:
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            "https://api.spotify.com/v1/search",
+            headers={"Authorization": f"Bearer {access_token}"},
+            params={"q": query, "type": "track", "limit": limit},
+        )
+        response.raise_for_status()
+        return response.json().get("tracks", {}).get("items", [])
+
+
+async def create_playlist(
+    access_token: str, spotify_user_id: str, name: str, description: str = ""
+) -> dict:
+    async with httpx.AsyncClient() as client:
+        response = await client.post(
+            f"https://api.spotify.com/v1/users/{spotify_user_id}/playlists",
+            headers={
+                "Authorization": f"Bearer {access_token}",
+                "Content-Type": "application/json",
+            },
+            json={"name": name, "description": description, "public": False},
+        )
+        response.raise_for_status()
+        return response.json()
+
+
+async def add_tracks_to_playlist(
+    access_token: str, playlist_id: str, track_uris: list
+) -> None:
+    async with httpx.AsyncClient() as client:
+        response = await client.post(
+            f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks",
+            headers={
+                "Authorization": f"Bearer {access_token}",
+                "Content-Type": "application/json",
+            },
+            json={"uris": track_uris},
+        )
+        response.raise_for_status()
