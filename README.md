@@ -94,7 +94,7 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | 4 | Spotify OAuth login | ✅ Done |
 | 5 | Spotify API integration (top tracks, top artists, create playlist) | ✅ Done |
 | 6 | AI: MoodMix — mood input → Claude → Spotify playlist | ✅ Done |
-| 7 | AI: TasteClone — top genres → Claude → artist recommendations | ⬜ Not started |
+| 7 | AI: TasteClone — top genres → Claude → artist recommendations | ✅ Done |
 | 8 | AI: PartyDJ — shared room → group playlist | ⬜ Not started |
 | 9 | Analytics API — mood history, genre breakdown, playlist stats | ⬜ Not started |
 | 10 | Frontend: React + Vite scaffold | ⬜ Not started |
