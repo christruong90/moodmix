@@ -97,7 +97,7 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | 7 | AI: TasteClone — top genres → Claude → artist recommendations | ✅ Done |
 | 8 | AI: PartyDJ — shared room → group playlist | ✅ Done |
 | 9 | Analytics API — mood history, genre breakdown, playlist stats | ✅ Done |
-| 10 | Frontend: React + Vite scaffold | ⬜ Not started |
+| 10 | Frontend: React + Vite scaffold | ✅ Done |
 | 11 | Frontend: Spotify login & home page | ⬜ Not started |
 | 12 | Frontend: MoodMix UI | ⬜ Not started |
 | 13 | Frontend: TasteClone UI | ⬜ Not started |
