@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import auth, spotify, moodmix, tasteclone, partydj
+from app.routers import auth, spotify, moodmix, tasteclone, partydj, analytics
 
 app = FastAPI(title="MoodMix API", version="1.0.0")
 
@@ -17,6 +17,7 @@ app.include_router(spotify.router)
 app.include_router(moodmix.router)
 app.include_router(tasteclone.router)
 app.include_router(partydj.router)
+app.include_router(analytics.router)
 
 
 @app.get("/health")

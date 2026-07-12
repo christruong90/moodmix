@@ -63,7 +63,7 @@ moodmix/
 6. ✅ Backend: AI MoodMix route (mood → Claude → Spotify playlist)
 7. ✅ Backend: AI TasteClone route (top genres → Claude → artist recommendations)
 8. ✅ Backend: AI PartyDJ route (room system + group playlist generation)
-9. ⬜ Backend: Analytics API (mood history, genre breakdown, playlist stats)
+9. ✅ Backend: Analytics API (mood history, genre breakdown, playlist stats)
 10. ⬜ Frontend: React + Vite scaffold
 11. ⬜ Frontend: Spotify login & home page
 12. ⬜ Frontend: MoodMix UI
