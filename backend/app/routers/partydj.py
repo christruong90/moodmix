@@ -1,3 +1,4 @@
+import anthropic
 import json
 import random
 import string
@@ -88,7 +89,12 @@ async def generate_partydj(
     members = db.query(RoomMember).filter(RoomMember.room_id == room.id).all()
     members_genres = [json.loads(m.top_genres) for m in members if m.top_genres]
 
-    queries = claude.get_partydj_playlist(members_genres)
+    try:
+        queries = claude.get_partydj_playlist(members_genres)
+    except anthropic.BadRequestError:
+        raise HTTPException(status_code=402, detail="Anthropic API credits required. Please add credits at console.anthropic.com.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Claude error: {str(e)}")
 
     track_uris = []
     track_names = []
