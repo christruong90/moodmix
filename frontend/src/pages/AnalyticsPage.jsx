@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend
 } from 'recharts'
 import api from '../services/api'
+import Spinner from '../components/Spinner'
+import NavBar from '../components/NavBar'
 
-const COLORS = ['#1DB954', '#191414', '#535353', '#B3B3B3', '#FFFFFF']
+const COLORS = ['#1DB954', '#1a78c2', '#9b59b6', '#e67e22', '#e74c3c']
 
 function AnalyticsPage() {
   const [data, setData] = useState(null)
@@ -19,96 +22,110 @@ function AnalyticsPage() {
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <div style={{ textAlign: 'center', padding: '80px' }}>Loading your stats...</div>
-  if (error) return <div style={{ textAlign: 'center', padding: '80px', color: 'red' }}>{error}</div>
+  if (loading) return (
+    <div style={{ minHeight: '100vh', background: 'radial-gradient(ellipse at top, #7a3500 0%, #121212 60%)' }}>
+      <Spinner message="Loading your stats..." />
+    </div>
+  )
+
+  if (error) return (
+    <div style={{ minHeight: '100vh', background: 'radial-gradient(ellipse at top, #7a3500 0%, #121212 60%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <p className="error">{error}</p>
+    </div>
+  )
 
   return (
-    <div style={{ maxWidth: '800px', margin: '60px auto', padding: '0 20px' }}>
-      <h1>📊 Analytics</h1>
-      <p style={{ color: '#888' }}>Your MoodMix listening stats</p>
+    <div style={{ minHeight: '100vh', background: 'radial-gradient(ellipse at top, #7a3500 0%, #121212 60%)' }}>
+      <NavBar />
+      <div className="page" style={{ maxWidth: '800px' }}>
+        <motion.h1
+          className="page-title"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          📊 Analytics
+        </motion.h1>
+        <p className="page-subtitle">Your MoodMix listening stats</p>
 
-      {/* Stat card */}
-      <div style={{ background: '#f5f5f5', borderRadius: '8px', padding: '24px', margin: '32px 0', display: 'inline-block' }}>
-        <div style={{ fontSize: '3rem', fontWeight: 'bold' }}>{data.total_playlists}</div>
-        <div style={{ color: '#888' }}>Playlists Generated</div>
+        <div className="stat-card">
+          <div className="number">{data.total_playlists}</div>
+          <div className="label">Playlists Generated</div>
+        </div>
+
+        {data.feature_breakdown.length > 0 && (
+          <div style={{ marginBottom: '48px' }}>
+            <h2 style={{ marginBottom: '16px' }}>Feature Breakdown</h2>
+            <ResponsiveContainer width="100%" height={200}>
+              <PieChart>
+                <Pie
+                  data={data.feature_breakdown}
+                  dataKey="count"
+                  nameKey="feature"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={80}
+                  label={({ feature, count }) => `${feature}: ${count}`}
+                >
+                  {data.feature_breakdown.map((_, i) => (
+                    <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Legend />
+                <Tooltip contentStyle={{ background: '#282828', border: 'none', color: '#fff' }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+
+        {data.top_genres.length > 0 && (
+          <div style={{ marginBottom: '48px' }}>
+            <h2 style={{ marginBottom: '16px' }}>Top Genres</h2>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={data.top_genres} layout="vertical">
+                <XAxis type="number" stroke="#B3B3B3" />
+                <YAxis type="category" dataKey="genre" width={120} stroke="#B3B3B3" />
+                <Tooltip contentStyle={{ background: '#282828', border: 'none', color: '#fff' }} />
+                <Bar dataKey="count" fill="#1DB954" radius={[0, 4, 4, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+
+        {data.top_moods.length > 0 && (
+          <div style={{ marginBottom: '48px' }}>
+            <h2 style={{ marginBottom: '16px' }}>Your Top Moods</h2>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={data.top_moods} layout="vertical">
+                <XAxis type="number" stroke="#B3B3B3" />
+                <YAxis type="category" dataKey="mood" width={160} stroke="#B3B3B3" />
+                <Tooltip contentStyle={{ background: '#282828', border: 'none', color: '#fff' }} />
+                <Bar dataKey="count" fill="#9b59b6" radius={[0, 4, 4, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+
+        {data.mood_history.length > 0 && (
+          <div style={{ marginBottom: '48px' }}>
+            <h2 style={{ marginBottom: '16px' }}>Recent Mood History</h2>
+            <ul className="track-list">
+              {data.mood_history.map((log, i) => (
+                <li key={i} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span>{log.mood}</span>
+                  <span style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>
+                    {new Date(log.created_at).toLocaleDateString()}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {data.total_playlists === 0 && (
+          <p style={{ color: 'var(--muted)', marginTop: '32px' }}>No data yet — generate some playlists first!</p>
+        )}
       </div>
-
-      {/* Feature breakdown */}
-      {data.feature_breakdown.length > 0 && (
-        <div style={{ marginBottom: '48px' }}>
-          <h2>Feature Breakdown</h2>
-          <ResponsiveContainer width="100%" height={200}>
-            <PieChart>
-              <Pie
-                data={data.feature_breakdown}
-                dataKey="count"
-                nameKey="feature"
-                cx="50%"
-                cy="50%"
-                outerRadius={80}
-                label={({ feature, count }) => `${feature}: ${count}`}
-              >
-                {data.feature_breakdown.map((_, i) => (
-                  <Cell key={i} fill={COLORS[i % COLORS.length]} />
-                ))}
-              </Pie>
-              <Legend />
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      )}
-
-      {/* Top genres */}
-      {data.top_genres.length > 0 && (
-        <div style={{ marginBottom: '48px' }}>
-          <h2>Top Genres</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={data.top_genres} layout="vertical">
-              <XAxis type="number" />
-              <YAxis type="category" dataKey="genre" width={120} />
-              <Tooltip />
-              <Bar dataKey="count" fill="#1DB954" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      )}
-
-      {/* Top moods */}
-      {data.top_moods.length > 0 && (
-        <div style={{ marginBottom: '48px' }}>
-          <h2>Your Top Moods</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={data.top_moods} layout="vertical">
-              <XAxis type="number" />
-              <YAxis type="category" dataKey="mood" width={160} />
-              <Tooltip />
-              <Bar dataKey="count" fill="#191414" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      )}
-
-      {/* Mood history */}
-      {data.mood_history.length > 0 && (
-        <div style={{ marginBottom: '48px' }}>
-          <h2>Recent Mood History</h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {data.mood_history.map((log, i) => (
-              <li key={i} style={{ padding: '8px 0', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between' }}>
-                <span>{log.mood}</span>
-                <span style={{ color: '#888', fontSize: '0.85rem' }}>
-                  {new Date(log.created_at).toLocaleDateString()}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {data.total_playlists === 0 && (
-        <p style={{ color: '#888', marginTop: '32px' }}>No data yet — generate some playlists first!</p>
-      )}
     </div>
   )
 }
