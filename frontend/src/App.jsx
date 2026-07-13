@@ -5,6 +5,7 @@ import DashboardPage from './pages/DashboardPage'
 import MoodMixPage from './pages/MoodMixPage'
 import TasteClonePage from './pages/TasteClonePage'
 import PartyDJPage from './pages/PartyDJPage'
+import AnalyticsPage from './pages/AnalyticsPage'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/moodmix" element={<MoodMixPage />} />
       <Route path="/tasteclone" element={<TasteClonePage />} />
       <Route path="/partydj" element={<PartyDJPage />} />
+      <Route path="/analytics" element={<AnalyticsPage />} />
     </Routes>
   )
 }
