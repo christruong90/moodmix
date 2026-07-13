@@ -47,4 +47,4 @@ async def spotify_callback(code: str, db: Session = Depends(get_db)) -> dict:
     db.refresh(user)
 
     our_token = create_access_token(user.id)
-    return {"access_token": our_token, "token_type": "bearer"}
+    return RedirectResponse(f"http://localhost:5173/callback?token={our_token}")
