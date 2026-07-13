@@ -101,7 +101,7 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | 11 | Frontend: Spotify login & home page | ✅ Done |
 | 12 | Frontend: MoodMix UI | ✅ Done |
 | 13 | Frontend: TasteClone UI | ✅ Done |
-| 14 | Frontend: PartyDJ UI | ⬜ Not started |
+| 14 | Frontend: PartyDJ UI | ✅ Done |
 | 15 | Frontend: Analytics dashboard (charts, genre viz, mood history) | ⬜ Not started |
 | 16 | Frontend: Polish — animations, responsive design, portfolio-ready visuals | ⬜ Not started |
 | 17 | Deployment: Docker Compose + Railway hosting | ⬜ Not started |
