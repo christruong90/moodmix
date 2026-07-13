@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
@@ -47,4 +48,5 @@ async def spotify_callback(code: str, db: Session = Depends(get_db)) -> dict:
     db.refresh(user)
 
     our_token = create_access_token(user.id)
-    return RedirectResponse(f"http://localhost:5173/callback?token={our_token}")
+    frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:5173")
+    return RedirectResponse(f"{frontend_url}/callback?token={our_token}")
