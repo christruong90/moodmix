@@ -2,6 +2,9 @@
 
 A full-stack portfolio project for generating AI-powered Spotify playlists. Built to demonstrate Spotify OAuth, Claude AI integration, backend API development, and frontend UI.
 
+**Live Demo:** https://unique-growth-production-832c.up.railway.app  
+**API:** https://moodmix-production-2187.up.railway.app/docs
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -104,5 +107,5 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | 14 | Frontend: PartyDJ UI | ✅ Done |
 | 15 | Frontend: Analytics dashboard (charts, genre viz, mood history) | ✅ Done |
 | 16 | Frontend: Polish — animations, responsive design, portfolio-ready visuals | ✅ Done |
-| 17 | Deployment: Docker Compose + Railway hosting | ⬜ Not started |
+| 17 | Deployment: Docker Compose + Railway hosting | ✅ Done |
 | 18 | CI/CD: GitHub Actions (lint, test, auto-deploy to Railway) | ⬜ Not started |

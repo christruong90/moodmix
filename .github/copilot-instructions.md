@@ -71,7 +71,7 @@ moodmix/
 14. ✅ Frontend: PartyDJ UI
 15. ✅ Frontend: Analytics dashboard (charts, genre viz, mood history)
 16. ✅ Frontend: Polish — animations, responsive design, portfolio-ready visuals
-17. ⬜ Deployment: Docker Compose + Railway hosting (backend + frontend + MySQL)
+17. ✅ Deployment: Docker Compose + Railway hosting (backend + frontend + MySQL)
 18. ⬜ CI/CD: GitHub Actions pipeline (lint, test, auto-deploy to Railway)
 15. ⬜ Deploy to Railway (public URL)
 
