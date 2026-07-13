@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
+import anthropic
 from app.core.database import get_db
 from app.core.dependencies import get_current_user
 from app.models.user import User
@@ -21,7 +22,12 @@ async def generate_moodmix(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ) -> dict:
-    queries = claude.get_moodmix_queries(request.mood)
+    try:
+        queries = claude.get_moodmix_queries(request.mood)
+    except anthropic.BadRequestError:
+        raise HTTPException(status_code=402, detail="Anthropic API credits required. Please add credits at console.anthropic.com.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Claude error: {str(e)}")
 
     track_uris = []
     track_names = []
