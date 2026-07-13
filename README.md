@@ -99,7 +99,7 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | 9 | Analytics API — mood history, genre breakdown, playlist stats | ✅ Done |
 | 10 | Frontend: React + Vite scaffold | ✅ Done |
 | 11 | Frontend: Spotify login & home page | ✅ Done |
-| 12 | Frontend: MoodMix UI | ⬜ Not started |
+| 12 | Frontend: MoodMix UI | ✅ Done |
 | 13 | Frontend: TasteClone UI | ⬜ Not started |
 | 14 | Frontend: PartyDJ UI | ⬜ Not started |
 | 15 | Frontend: Analytics dashboard (charts, genre viz, mood history) | ⬜ Not started |

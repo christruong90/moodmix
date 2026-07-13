@@ -66,7 +66,7 @@ moodmix/
 9. ✅ Backend: Analytics API (mood history, genre breakdown, playlist stats)
 10. ✅ Frontend: React + Vite scaffold
 11. ✅ Frontend: Spotify login & home page
-12. ⬜ Frontend: MoodMix UI
+12. ✅ Frontend: MoodMix UI
 13. ⬜ Frontend: TasteClone UI
 14. ⬜ Frontend: PartyDJ UI
 15. ⬜ Frontend: Analytics dashboard (charts, genre viz, mood history)
