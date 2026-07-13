@@ -14,7 +14,8 @@ function HomePage() {
   }, [isLoggedIn, navigate])
 
   const handleLogin = () => {
-    window.location.href = 'http://localhost:8000/auth/spotify/login'
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+    window.location.href = `${apiUrl}/auth/spotify/login`
   }
 
   return (
