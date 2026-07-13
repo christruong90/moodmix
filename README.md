@@ -103,6 +103,6 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 | 13 | Frontend: TasteClone UI | ✅ Done |
 | 14 | Frontend: PartyDJ UI | ✅ Done |
 | 15 | Frontend: Analytics dashboard (charts, genre viz, mood history) | ✅ Done |
-| 16 | Frontend: Polish — animations, responsive design, portfolio-ready visuals | ⬜ Not started |
+| 16 | Frontend: Polish — animations, responsive design, portfolio-ready visuals | ✅ Done |
 | 17 | Deployment: Docker Compose + Railway hosting | ⬜ Not started |
 | 18 | CI/CD: GitHub Actions (lint, test, auto-deploy to Railway) | ⬜ Not started |
